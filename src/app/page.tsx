@@ -1,8 +1,15 @@
-import React from 'react'
 
-const page = () => {
+import React from 'react'
+import { requireAuth } from '@/lib/auth-utils'
+import { caller } from '@/trpc/server'
+
+const page = async () => {
+  await requireAuth()
+  const data = await caller.getUser()
   return (
-    <div className='text-red-600 text-3xl font-bold'>page</div>
+    <div className='text-red-600  font-bold flex items-center justify-center h-screen'>
+      {JSON.stringify(data)}
+    </div>
   )
 }
 
