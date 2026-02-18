@@ -1,9 +1,11 @@
 import { LoginForm } from '@/features/auth/components/login-form'
 import { requireUnAuth } from '@/lib/auth-utils'
+import Link from 'next/link'
 import React from 'react'
+import Image from 'next/image'
 
 const Page = async () => {
-  await requireUnAuth()
+  //await requireUnAuth()
   return (
     <LoginForm/>
   )
