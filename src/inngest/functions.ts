@@ -12,7 +12,12 @@ export const execute = inngest.createFunction(
     const {steps} = await step.ai.wrap("gemini-generate-text", generateText,{
       system: "You are a helpful assistant",
       prompt: "What is 2+2?",
-      model: google("gemini-2.5-flash")
+      model: google("gemini-2.5-flash"),
+      experimental_telemetry:{
+        isEnabled: true,
+        recordInputs: true,
+        recordOutputs: true,
+      }
     })
     
     return steps
