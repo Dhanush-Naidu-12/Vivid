@@ -61,7 +61,7 @@
   --popover-foreground: oklch(0.25 0.01 60);
   
   /* Primary: "Copper/Bronze" - feels expensive and grounded */
-  --primary: oklch(0.45 0.08 45);        
+  --primary: #7a462e;        
   --primary-foreground: oklch(0.98 0.005 60);
   
   --secondary: oklch(0.94 0.01 60);      /* Soft Sand */
@@ -114,7 +114,7 @@
   --muted: oklch(0.2 0.01 60);
   --muted-foreground: oklch(0.6 0.01 60);
   
-  --accent: oklch(0.25 0.02 160);        /* Subdued Dark Sage */
+  --accent: #19251e;        /* Subdued Dark Sage */
   --accent-foreground: oklch(0.85 0.03 160);
   
   --destructive: oklch(0.45 0.15 25);
@@ -146,3 +146,4 @@
 .react-flow__node.selected #base-node {
   @apply ring-3 ring-muted-foreground/25 shadow-lg;
 }
+
