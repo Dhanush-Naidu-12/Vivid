@@ -107,7 +107,7 @@ export const Appsidebar = () => {
                             shadow-sm
                             transition-all duration-300 ease-out
                             hover:shadow-md
-                            hover:-translate-y-[1px]
+                            hover:-translate-y-px
                             active:translate-y-0
                             dark:shadow-[0_0_24px_-6px_oklch(0.82_0.06_80/0.35)]
                         "
@@ -120,8 +120,8 @@ export const Appsidebar = () => {
                             className="
                                 pointer-events-none absolute inset-0
                                 opacity-0 group-hover:opacity-100
-                                transition-opacity duration-500
-                                bg-gradient-to-r from-transparent via-white/20 to-transparent
+                                transition-opacity
+                                bg-linear-to-r from-transparent via-white/20 to-transparent
                                 -translate-x-full group-hover:translate-x-full
                                 duration-700 ease-out
                             "
