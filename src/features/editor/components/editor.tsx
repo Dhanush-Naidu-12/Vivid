@@ -1,13 +1,15 @@
 'use client'
 import { ErrorView, LoadingView } from "@/components/global/entity-component"
 import { useSuspenceWorkflow } from "@/features/workflows/hooks/use-workflows"
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { ReactFlow, applyNodeChanges, applyEdgeChanges, addEdge, Edge, Node, NodeChange, EdgeChange, Connection, Background, Controls, MiniMap, Panel, Position } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { nodeComponents } from "@/config/node-components";
 import { AddNodeButton } from "./add-node-button";
 import { useSetAtom } from "jotai";
 import { editorAtom } from "../store/atoms";
+import { NodeType } from "@prisma/client";
+import { ExecuteWorflowButton } from "./execute-workflow";
 
 
 export const EditorLoading =() =>{
@@ -41,6 +43,10 @@ export const Editor =({workflowId}:{workflowId: string}) =>{
     [],
   );
 
+  const hasManualTrigger = useMemo(()=>{
+    return nodes.some((node) => node.type === NodeType.MANUAL_TRIGGER);
+  },[nodes])
+
     return(
         
   <div className="size-full bg-background">
@@ -63,6 +69,11 @@ export const Editor =({workflowId}:{workflowId: string}) =>{
       <Panel position='top-right'>
         <AddNodeButton/>
       </Panel>
+      {hasManualTrigger && (
+        <Panel position="bottom-center" > 
+          <ExecuteWorflowButton workflowId={workflowId}/>
+        </Panel>
+      )}
       <Background
         color="#222" gap={28} size={1}
       />
