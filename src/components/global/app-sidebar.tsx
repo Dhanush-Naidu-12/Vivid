@@ -136,7 +136,7 @@ export const Appsidebar = () => {
                     <SidebarMenuButton 
                         tooltip='Billing portal' 
                         onClick={()=>authClient.customer.portal()}
-                        className='gap-x-4 h-11 px-4 rounded-md transition-all duration-200 hover:bg-muted/70 hover:text-primary'
+                        className='gap-x-4 h-11 px-4 rounded-md transition-all duration-200 hover:bg-blue-300/20 hover:text-primary'
                     >
                         <CreditCardIcon className='h-4 w-4'/>
                         <span className="text-sm">Billing Portal</span>
@@ -148,7 +148,7 @@ export const Appsidebar = () => {
                     <SidebarMenuButton 
                         tooltip='Logout' 
                         onClick={()=>authClient.signOut({fetchOptions:{onSuccess:()=>router.push('/login')}})}
-                        className='gap-x-4 h-11 px-4 rounded-md transition-all duration-200 hover:bg-destructive/10 hover:text-destructive'
+                        className='gap-x-4 h-11 px-4 rounded-md transition-all duration-200 hover:bg-destructive hover:text-destructive-foreground'
                     >
                         <LogOutIcon className='h-4 w-4'/>
                         <span className="text-sm">Logout</span>
