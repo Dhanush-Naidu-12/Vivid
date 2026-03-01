@@ -1,5 +1,6 @@
 import { PAGINATION } from "@/config/constants";
 import { inngest } from "@/inngest/client";
+import { sendWorkflowExecution } from "@/inngest/utils";
 import { prisma } from "@/lib/db";
 import { createTRPCRouter, premiumProcedure, protectedProcedure } from "@/trpc/init";
 import { NodeType } from "@prisma/client";
@@ -13,9 +14,8 @@ import z from "zod";
         where:{id: input.id, userId: ctx.session.user.id},
 
        });
-       await inngest.send({
-        name: 'workflows/execute.workflow',
-        data:{workflowId: input.id, }
+       await sendWorkflowExecution({
+        workflowId: input.id,
        })
        return workflow;
     }),
