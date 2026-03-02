@@ -11,9 +11,9 @@ Handlebars.registerHelper("json", (context) =>{
 })
 
 type HttpRequestData = {
-  variableName: string;
-  endpoint: string
-  method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
+  variableName?: string;
+  endpoint?: string
+  method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
   body?: string;
 }
 
@@ -29,6 +29,11 @@ export const httpRequestExecutor: NodeExecutor<HttpRequestData> = async({data, n
   )
 
 
+
+  try{
+
+  const result = await step.run('http-request', async()=>{
+    
   if(!data.endpoint){
     await publish(
       httpRequestChannel().status({
@@ -58,10 +63,6 @@ export const httpRequestExecutor: NodeExecutor<HttpRequestData> = async({data, n
     );
     throw new NonRetriableError('HTTP Request node: No method configured');
   }
-
-  try{
-
-  const result = await step.run('http-request', async()=>{
     const method = data.method || 'GET';
     const endpoint = Handlebars.compile(data.endpoint)(context);
     const options: KyOptions = {method};
