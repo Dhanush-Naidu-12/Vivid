@@ -9,6 +9,9 @@ import { httpRequestChannel } from "./channels/http-request";
 import { manualTriggerChannel } from "./channels/manual-trigger";
 import { googleFormTriggerChannel } from "./channels/google-form-trigger";
 import { stripeTriggerChannel } from "./channels/stripe-trigger";
+import { geminiChannel } from "./channels/gemini";
+import { openaiChannel } from "./channels/openai";
+import { anthropicChannel } from "./channels/anthropic";
 
 
 const google = createGoogleGenerativeAI()
@@ -16,7 +19,7 @@ const google = createGoogleGenerativeAI()
 
 export const executeWorkflow = inngest.createFunction(
   { id: "execute-workflow" ,retries: 0,},
-  { event: "workflows/execute.workflow" ,channel:[httpRequestChannel(),manualTriggerChannel(),googleFormTriggerChannel(),stripeTriggerChannel()]},
+  { event: "workflows/execute.workflow" ,channel:[httpRequestChannel(),manualTriggerChannel(),googleFormTriggerChannel(),stripeTriggerChannel(),geminiChannel(),openaiChannel(),anthropicChannel()]},
   async ({ event, step ,publish}) => {
     const workflowId = event.data.workflowId;
 
