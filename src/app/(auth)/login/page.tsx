@@ -5,7 +5,7 @@ import React from 'react'
 import Image from 'next/image'
 
 const Page = async () => {
-  //await requireUnAuth()
+  await requireUnAuth()
   return (
     <LoginForm/>
   )
