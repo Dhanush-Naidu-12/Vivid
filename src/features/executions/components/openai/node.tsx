@@ -13,6 +13,7 @@ import {  fetchOpenAiToken } from "./actions"
 type OpenAiNodeData = {
     systemPrompt?: string;
     user?: string;
+    credentialId?: string;
     userPrompt?: string;
     variableName?: string;
 }

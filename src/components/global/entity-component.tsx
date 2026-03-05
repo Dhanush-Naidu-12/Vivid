@@ -127,7 +127,7 @@ export const LoadingView =({message,entity}:LoadingViewProps) =>{
             <Loader2Icon className="size-6 animate-spin text-muted-foreground"/>
             <p className="text-sm text-primary">
                 {message || `Loading ${entity}...`}
-            \</p>
+            </p>
         </div>
     )
 

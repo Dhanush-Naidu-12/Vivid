@@ -1,10 +1,34 @@
-import { requireAuth } from '@/lib/auth-utils'
-import React from 'react'
 
-const Credentals =async () => {
-  await requireAuth()
+import { CredentialsList,CredentialsContainer, CredentialsError, CredentialsLoading } from '@/features/credentials/components/credentials'
+import { credentialParamsLoder } from '@/features/credentials/server/params-loader'
+import { prefetchCredentials } from '@/features/credentials/server/prefetch'
+import { requireAuth } from '@/lib/auth-utils'
+import { HydrateClient } from '@/trpc/server'
+import { SearchParams } from 'nuqs'
+import React, { Suspense } from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
+
+
+type Props ={
+  searchParams: Promise<SearchParams>
+}
+
+const Credentals =async ({searchParams}:Props) => {
+  await requireAuth();
+
+  const params = await credentialParamsLoder(searchParams);
+  prefetchCredentials(params);
+
   return (
-    <div>Credentals</div>
+    <CredentialsContainer>
+    <HydrateClient>
+      <ErrorBoundary fallback={<CredentialsError/>}>
+        <Suspense fallback={<CredentialsLoading/>}>
+          <CredentialsList/>
+        </Suspense>
+      </ErrorBoundary>
+    </HydrateClient>
+    </CredentialsContainer>
   )
 }
 
