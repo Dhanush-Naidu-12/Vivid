@@ -12,6 +12,7 @@ import { fetchGeminiToken } from "./actions"
 type GeminiNodeData = {
     systemPrompt?: string;
     user?: string;
+    credentialId?: string;
     userPrompt?: string;
     variableName?: string;
 }
