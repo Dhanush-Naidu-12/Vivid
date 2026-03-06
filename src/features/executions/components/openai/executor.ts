@@ -21,7 +21,7 @@ type OpenAiData = {
 
 
 
-export const openAiExecutor: NodeExecutor<OpenAiData> = async({data, nodeId, context, step,publish}) => {
+export const openAiExecutor: NodeExecutor<OpenAiData> = async({data, nodeId, context, step,publish,userId}) => {
 
   await publish(
     openaiChannel().status({
@@ -64,11 +64,17 @@ export const openAiExecutor: NodeExecutor<OpenAiData> = async({data, nodeId, con
 
   const credential = await step.run("get-credential",()=>{
       return prisma.credential.findUnique({
-        where:{id: data.credentialId,},
+        where:{id: data.credentialId,userId},
       })
     })
   
     if(!credential){
+      await publish(
+        openaiChannel().status({
+          nodeId,
+          status: "error",
+        })
+      );
       throw new NonRetriableError("OpenAI Node: Credential not found")
     }
   

@@ -66,7 +66,14 @@ const executionNodes: NodeTypeOptions[] = [
         label: "Anthropic",
         description: "Integrate Anthropic AI models into your workflow.",
         icon: '/anthropic.svg'
-    }
+    },
+    {
+        type: NodeType.DISCORD,
+        label: "Discord",
+        description: "Send messages to Discord.",
+        icon: '/discord.svg'
+    },
+   
 ]
 
 interface NodeSelectorProps {

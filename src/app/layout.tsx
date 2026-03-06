@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Vivid-Automation",
+  title: "Vivid | Automation",
   description: "Vivid Automation",
   icons: {
     icon: "/logo.svg",
